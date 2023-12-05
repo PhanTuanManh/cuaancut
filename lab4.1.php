@@ -100,4 +100,32 @@ if (isset($_POST["deleteProfile"])) {
     $conn->query("DELETE FROM profile WHERE id=$id");
 }
 
+// Thực hiện chức năng thêm và sửa ảnh của profile
+if (isset($_POST["updateAvatar"])) {
+    $profileId = $_POST["profile_id"];
+    $newAvatar = $_POST["new_avatar"];
+    $conn->query("UPDATE profile SET avatar='$newAvatar' WHERE id=$profileId");
+}
+
+// Thực hiện chức năng thêm mới hồ sơ cá nhân với ảnh và chọn major
+if (isset($_POST["addProfile"])) {
+    $fullname = $_POST["fullname"];
+    $avatar = $_POST["avatar"];
+    $birthday = $_POST["birthday"];
+    $email = $_POST["email"];
+    $address = $_POST["address"];
+    $hobbie = $_POST["hobbie"];
+    $skill = $_POST["skill"];
+    $majors_id = $_POST["majors_id"];
+
+    $conn->query("INSERT INTO profile (fullname, avatar, birthday, email, address, hobbie, skill, majors_id) VALUES ('$fullname', '$avatar', '$birthday', '$email', '$address', '$hobbie', '$skill', $majors_id)");
+}
+
+// Thực hiện chức năng xóa dữ liệu profile
+if (isset($_POST["deleteProfile"])) {
+    $id = $_POST["profile_id"];
+    $conn->query("DELETE FROM profile WHERE id=$id");
+}
+
+
 $conn->close();
